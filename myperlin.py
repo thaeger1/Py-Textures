@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 
 def fade(t):
     return t * t * t * (t * (t * 6 - 15) + 10)
-    # return 6 * t**5 - 15 * t**4 + 10 * t**3
 
 def grad(hash,x,y):
     vec = np.array([[0,1],[0,-1],[1,0],[-1,0]])
