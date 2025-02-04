@@ -6,7 +6,7 @@ def dist(grid, points):
     dy = points[:,:,1]-grid[:,:,1]
     return dx*dx + dy*dy
 
-def worley2d(shape,res,seed=0):
+def worley2d(shape,res,seed=0,tile=0):
 
     np.random.seed(seed)
 
@@ -18,9 +18,7 @@ def worley2d(shape,res,seed=0):
     rand = np.random.rand(res+2,res+2,2) # + 2 gives us a buffer on each side of our texture
     points = rand.repeat(d, axis=0).repeat(d, axis=1)
 
-    repeat = 0
-    if (repeat):
-        print('hi')
+    if (tile):
         points[0:d,:] = points[-2*d:-d,:]
         points[:,0:d] = points[:,-2*d:-d]
         points[-d:,:] = points[d:2*d,:]
@@ -48,7 +46,3 @@ if __name__ == '__main__':
 
     plt.imshow(worley2d(scale,res,seed=87), cmap='grey')
     plt.show()
-
-# src:
-# https://stackoverflow.com/questions/42147776/producing-2d-perlin-noise-with-numpy
-# https://adrianb.io/2014/08/09/perlinnoise.html
