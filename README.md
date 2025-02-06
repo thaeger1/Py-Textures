@@ -15,12 +15,12 @@ The noise_type parameter currently accepts 'white', 'perlin', 'worley', and 'whi
 ```
 C:\...> py noisegen.py worley 4 
 ```
-<img src='worley_s4.png'>
+<img src='img/worley_s4.png'>
 
 ```
 C:\...> py noisegen.py perlin 2
 ```
-<img src='perlin_s2.png'>
+<img src='img/perlin_s2.png'>
 
 <br>
 <strong>textures.py</strong> currently supports layers and alpha channels but has not been connected to Noise.py yet.
