@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from Noise import *
+from lib.Noise import *
 import sys
 
 args = sys.argv
@@ -25,6 +25,9 @@ elif tnoise == 'perlin':
     plt.imshow(perlin2d(x/scale,y/scale,seed=87), cmap='grey')
 elif tnoise == 'fbm':
     plt.imshow(fBM2d(x/scale,y/scale,shape,seed=87), cmap='grey')
+# TODO: add stripes
+elif tnoise == 'stripes':
+    pass
 else: assert False, 'Invalid noise type'
 
 plt.show()

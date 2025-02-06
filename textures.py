@@ -1,6 +1,7 @@
 import numpy as np
 import tkinter as tk
-import b64encoder as encoder
+import lib.b64encoder as encoder
+import cv2
 
 
 class ImageFrame(tk.Frame):

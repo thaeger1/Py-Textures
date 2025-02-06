@@ -95,6 +95,21 @@ def fBM2d(x,y,shape,seed=0):
         freq *= 2.
     return normalize(fBM)
 
+def stripes(shape,res,dir=(0,1)):
+    step = res/shape
+    arr = np.mgrid[0:res:step,0:res:step].transpose(1,2,0)
+
+    return np.sin(np.sum(arr * dir, axis=2).transpose(1,0)) # x + y, transpose to flip y/x for improved legibility
+
+# import matplotlib.pyplot as plt
+# if __name__ == '__main__':
+
+#     # make stripes
+#     # stripes(256, 128)
+#     plt.imshow(stripes(256,128), cmap='grey')
+#     plt.show()
+#     # pass
+
 ### sources:
 # normalize
 # - https://stackoverflow.com/questions/5731863/mapping-a-numeric-range-onto-another
