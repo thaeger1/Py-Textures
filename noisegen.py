@@ -4,12 +4,10 @@ import sys
 
 args = sys.argv
 assert (len(args) >= 3), 'Incorrect input format'
+# requires : py file.py [noise_type] [scale] [additional args: direction or seed]
 
 tnoise = args[1]
 scale = int(args[2])
-if len(args) > 3:
-    oct = args[3]
-    freq = args[4]
 
 shape = 256
 res = 8
@@ -24,10 +22,17 @@ elif tnoise == 'worley':
 elif tnoise == 'perlin':
     plt.imshow(perlin2d(x/scale,y/scale,seed=87), cmap='grey')
 elif tnoise == 'fbm':
+    oct = int(input('Octaves: '))
+    freq = int(input('Init freq: '))
+    # TODO: pass oct, freq to fBM
     plt.imshow(fBM2d(x/scale,y/scale,shape,seed=87), cmap='grey')
 # TODO: add stripes
 elif tnoise == 'stripes':
-    pass
+    # dir = input('Direction: ')
+    plt.imshow(stripes2d(shape,res), cmap='grey')
 else: assert False, 'Invalid noise type'
 
 plt.show()
+
+# TODO: have option (flag?) to have program print output to stdout so we can pipe together noise functions
+# encode as B64, print output, pipe op, intake B64 str and decode

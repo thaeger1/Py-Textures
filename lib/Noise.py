@@ -95,20 +95,30 @@ def fBM2d(x,y,shape,seed=0):
         freq *= 2.
     return normalize(fBM)
 
-def stripes(shape,res,dir=(0,1)):
+def stripes2d(shape,scale,dir=(1,0)):
+    res = shape/scale
     step = res/shape
-    arr = np.mgrid[0:res:step,0:res:step].transpose(1,2,0)
+    print(shape, scale, res, step)
+    arr = np.mgrid[0:res:step,0:res:step].transpose(2,1,0)
+    if (dir==(0,0)): # do rings
+        arr -= res/2 # center coords
+        return np.sin(np.sqrt( (arr[:,:,0]-.5)*(arr[:,:,0]-.5) + (arr[:,:,1]-.5)*(arr[:,:,1]-.5) ))
+    else:
+        return np.sin(np.sum(arr * dir, axis=2)) # sin(x * dir.x + y * dir.y)
 
-    return np.sin(np.sum(arr * dir, axis=2).transpose(1,0)) # x + y, transpose to flip y/x for improved legibility
+def gradient(shape,dir=(1,0)):
+    return normalize(np.sum(np.mgrid[0:shape,0:shape].transpose(2,1,0) * dir, axis=2))
 
-# import matplotlib.pyplot as plt
-# if __name__ == '__main__':
+import matplotlib.pyplot as plt
+if __name__ == '__main__':
+    # plt.imshow(stripes2d(256,4), cmap='grey')
+    # plt.show()
 
-#     # make stripes
-#     # stripes(256, 128)
-#     plt.imshow(stripes(256,128), cmap='grey')
-#     plt.show()
-#     # pass
+    plt.imshow(gradient(256), cmap='grey')
+    plt.show()
+
+# TODO: figure out function composition
+# - pass array as input for all funcs?
 
 ### sources:
 # normalize

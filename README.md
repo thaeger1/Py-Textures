@@ -8,7 +8,7 @@ The project currently supports white noise, perlin noise, worley (or cellular) n
 
 To use <strong>noisegen.py</strong>, provide shell commands in the following format:
 ```
-C:\...> py -m noisegen.py [noise_type, <str>] [scale, <int>]
+C:\...> py noisegen.py [noise_type, <str>] [scale, <int>]
 ```
 
 The noise_type parameter currently accepts 'white', 'perlin', 'worley', and 'white'. Using the following commands will produce the following images:<br>
